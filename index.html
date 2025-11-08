@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dalouna - Restaurant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            line-height: 1.4;
+            color: #000;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #000;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #2563eb; /* Blue color for Dalouna */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2563eb; /* Blue color for navigation */
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: #1d4ed8; /* Darker blue on hover */
+        }
+
+        /* Hero Section - FULL WIDTH BANNER */
+        .hero {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 120px 40px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            border-radius: 8px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            max-width: 700px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #000;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        /* Content Sections - NARROWER CONTAINERS */
+        .content-section {
+            max-width: 1000px;
+            margin: 0 auto 20px auto;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Layout Containers */
+        .two-column {
+            display: flex;
+            gap: 15px;
+            align-items: stretch;
+        }
+
+        .three-column {
+            display: flex;
+            gap: 15px;
+            align-items: stretch;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        /* Content Boxes - NARROWER, NO BORDERS */
+        .content-box {
+            background: #fff;
+            padding: 12px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Text Content */
+        p {
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+
+        .highlight {
+            background: #f5f5f5;
+            padding: 8px;
+            margin: 8px 0;
+            text-align: center;
+            font-weight: 500;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+            margin: 8px 0;
+        }
+
+        .feature {
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-align: center;
+            flex: 1;
+            background: #f9f9f9;
+            padding: 6px;
+            border-radius: 4px;
+        }
+
+        /* Menu Styles */
+        .menu-category {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-info strong {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .item-info p {
+            margin: 2px 0 0 0;
+            color: #666;
+            font-size: 0.75rem;
+        }
+
+        .price {
+            font-weight: 600;
+            margin-left: 10px;
+            font-size: 0.85rem;
+            color: #2563eb; /* Blue color for prices */
+        }
+
+        .menu-note {
+            text-align: left; /* Changed from center to left */
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 0.75rem;
+            margin-left: 12px; /* Match the Menu Highlights alignment */
+            margin-right: 12px;
+        }
+
+        /* Hours Table */
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        .hours-table td {
+            padding: 4px 0;
+            border-bottom: 1px solid #ddd;
+            font-size: 0.8rem;
+        }
+
+        .hours-table td:first-child {
+            font-weight: 500;
+        }
+
+        /* Contact Info */
+        .contact-info p {
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+        }
+
+        .note {
+            color: #666;
+            font-style: italic;
+            margin-top: 5px;
+            font-size: 0.75rem;
+        }
+
+        /* Map */
+        .map-container {
+            margin-top: 8px;
+        }
+
+        .map-container img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px 0 8px 0;
+            color: #666;
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
+            font-size: 0.75rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FIXED: Menu Highlights Section Alignment */
+        .menu-highlights-section {
+            max-width: 1000px;
+            margin: 0 auto 20px auto;
+        }
+
+        .menu-highlights-section h2 {
+            margin-left: 12px;
+            margin-right: 12px;
+        }
+
+        /* NEW: Hours & Find Us Layout */
+        .hours-layout {
+            display: flex;
+            gap: 15px;
+            align-items: stretch;
+        }
+
+        .hours-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .find-us-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            nav ul {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 80px 20px;
+                min-height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .content-section {
+                max-width: 100%;
+            }
+
+            .two-column,
+            .three-column,
+            .hours-layout {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hours-side,
+            .find-us-side {
+                gap: 10px;
+            }
+
+            .menu-item {
+                flex-direction: column;
+            }
+
+            .price {
+                margin-left: 0;
+                margin-top: 3px;
+            }
+
+            h2 {
+                text-align: center;
+            }
+            
+            .features {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .menu-highlights-section {
+                max-width: 100%;
+            }
+            
+            .menu-highlights-section h2 {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .menu-note {
+                margin-left: 0;
+                margin-right: 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Dalouna</div>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#hours">Hours</a></li>
+                <li><a href="#find-us">Find Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION - FULL WIDTH BANNER -->
+    <section class="hero">
+        <h1>Welcome to Dalouna</h1>
+        <p>Homestyle flavors, fresh ingredients, and warm hospitality. Join us for grilled specialties, mezze, and seasonal dishes inspired by the Levant.</p>
+        <a href="#menu" class="cta-button">View Menu</a>
+    </section>
+
+    <!-- ABOUT & CHEF'S NOTE - NARROWER CONTAINERS -->
+    <section id="about" class="content-section">
+        <div class="two-column">
+            <div class="column">
+                <div class="content-box">
+                    <h2>About Us</h2>
+                    <p>Dalouna is a neighborhood restaurant celebrating family recipes and local produce. Our kitchen brings together classic Palestinian dishes and modern twists.</p>
+                    <p class="highlight">Vegetarian & vegan options available - Halal meats - Dine-in & takeaway</p>
+                    <div class="features">
+                        <div class="feature">Fresh Bread Daily</div>
+                        <div class="feature">Wood-Fired Grill</div>
+                        <div class="feature">House Pickles</div>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="content-box">
+                    <h2>Chef's Note</h2>
+                    <blockquote>"We cook the food we love to serve at home—simple, bright, and generous."</blockquote>
+                    <p>Ask us about today's seasonal specials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU SECTIONS - FIXED ALIGNMENT -->
+    <section id="menu" class="menu-highlights-section">
+        <h2>Menu Highlights</h2>
+        <div class="three-column">
+            <div class="column">
+                <div class="content-box">
+                    <div class="menu-category">
+                        <h3>Mezze</h3>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Hummus Bil Tahina</strong>
+                                    <p>chickpeas, tahini, lemon</p>
+                                </div>
+                                <span class="price">$12</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Mutabbal (Baba Ghanoush)</strong>
+                                    <p>smoky eggplant, pomegranate</p>
+                                </div>
+                                <span class="price">$12</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Falafel Plate</strong>
+                                    <p>herb falafel, tahini, pickles</p>
+                                </div>
+                                <span class="price">$16</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="content-box">
+                    <div class="menu-category">
+                        <h3>Mains</h3>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Mixed Grill</strong>
+                                    <p>kebab, shish tawook, koffa, sumac onions</p>
+                                </div>
+                                <span class="price">$18</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Musakhan Wrap</strong>
+                                    <p>sumac chicken, onions, taboon bread</p>
+                                </div>
+                                <span class="price">$14</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Maquiba</strong>
+                                    <p>layered rice, aubergine, cauliflower, yogurt</p>
+                                </div>
+                                <span class="price">$15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="content-box">
+                    <div class="menu-category">
+                        <h3>Drinks & Sweets</h3>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Mint Lemonade</strong>
+                                    <p>fresh mint, lemon, cane sugar</p>
+                                </div>
+                                <span class="price">$4</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Cardamom Tea</strong>
+                                    <p>black tea, cardamom pods</p>
+                                </div>
+                                <span class="price">$4</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <strong>Knafeh Nabulsi</strong>
+                                    <p>cheese pastry, orange blossom</p>
+                                </div>
+                                <span class="price">$16</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <p class="menu-note">* Prices are exclude taxes.</p>
+    </section>
+
+    <!-- HOURS & FIND US - SEPARATE CONTAINERS -->
+    <section id="hours" class="content-section">
+        <div class="hours-layout">
+            <!-- Left Side: Hours & Reserve -->
+            <div class="hours-side">
+                <div class="content-box">
+                    <h2>Hours</h2>
+                    <table class="hours-table">
+                        <tr>
+                            <td>Mon-Thu</td>
+                            <td>12:00 – 22:00</td>
+                        </tr>
+                        <tr>
+                            <td>Fri</td>
+                            <td>12:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>Sat</td>
+                            <td>10:00 – 23:00</td>
+                        </tr>
+                        <tr>
+                            <td>Sun</td>
+                            <td>10:00 – 21:00</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="content-box">
+                    <h2>Reserve a Table</h2>
+                    <div class="contact-info">
+                        <p>Call (+970) 599-000-000 or email hello@dalouna.example</p>
+                        <p class="note">Walk-ins welcome • Groups & events by request</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Find Us & Map -->
+            <div class="find-us-side">
+                <div class="content-box">
+                    <h2>Find Us</h2>
+                    <div class="contact-info">
+                        <p><strong>Old City, Nablus • Al-Qaryoun Street 12</strong></p>
+                        <p>Parking nearby • Accessible entrance</p>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <div class="map-container">
+                        <img src="images/map.png" alt="Map showing Dalouna location">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>2025 © Dalouna Restaurant • Made with ❤️ by Student Mohammad Khalili - 12428427</p>
+        <p><a href="https://github.com/MohKh67" target="_blank">GitHub</a></p>
+    </footer>
+</body>
+</html>
